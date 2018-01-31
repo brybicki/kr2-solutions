@@ -2,7 +2,7 @@
 #include <string.h>
 
 /* print input one word per line */
-int main()
+int main(void)
 {
     int c, count, lws;      /* lws = last_was_space flag */
     char word[20] = {0};
