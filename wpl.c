@@ -1,28 +1,26 @@
 #include <stdio.h>
-
-#define IN  1   /* inside a word */
-#define OUT 0   /* outside a word */
+#include <string.h>
 
 /* print input one word per line */
-main()
+int main()
 {
-    int c, state, count;
+    int c, count, lws;      /* lws = last_was_space flag */
     char word[20] = {0};
-    state = OUT;
     count = 0;
+    lws = 0;
     while ((c = getchar()) != EOF) {
         if (c == ' ' || c == '\n' || c == '\t') {
-            printf("encountered blank, going out of word\n");
-            state = OUT;
-            printf("%s\n", word);
+            if (lws == 0)
+                printf("%s\n", word);
             count = 0;
+            memset(word, 0, sizeof(word));
+            lws = 1;
         }
-        else if (state == OUT) {
-            state = IN;
-            printf("encountered a letter, going into a word\n");
+        else {
+            lws = 0;
             word[count] = c;
             ++count;
-            printf("current word buffer: %s\n", word);
         }
     }
+    return 0;
 }
