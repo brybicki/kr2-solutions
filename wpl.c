@@ -13,7 +13,7 @@ int main()
             if (lws == 0)
                 printf("%s\n", word);
             count = 0;
-            memset(word, 0, sizeof(word));
+            memset(word, 0, sizeof(word));  /* reset the array */
             lws = 1;
         }
         else {
